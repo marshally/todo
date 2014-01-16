@@ -35,3 +35,8 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
 end
+
+group :development do
+  gem 'guard-bundler', '~> 2.0.0'
+  gem 'guard-rspec', '~> 4.2.4'
+end
