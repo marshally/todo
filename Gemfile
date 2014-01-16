@@ -37,6 +37,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'git_remote_branch', '~> 0.3.7'
   gem 'guard-bundler', '~> 2.0.0'
   gem 'guard-pow', '~> 2.0.0'
   gem 'guard-rspec', '~> 4.2.4'
