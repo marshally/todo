@@ -11,18 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116230702) do
+ActiveRecord::Schema.define(version: 20140117231459) do
 
   create_table "todos", force: true do |t|
-    t.string   "description",  null: false
+    t.string   "description",                 null: false
     t.integer  "priority"
     t.datetime "due_at"
-    t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed",   default: false, null: false
   end
 
-  add_index "todos", ["completed_at"], name: "index_todos_on_completed_at"
   add_index "todos", ["due_at"], name: "index_todos_on_due_at"
   add_index "todos", ["priority"], name: "index_todos_on_priority"
 
