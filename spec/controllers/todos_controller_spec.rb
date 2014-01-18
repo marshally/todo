@@ -42,19 +42,19 @@ describe TodosController do
     describe "with valid params" do
       it "creates a new Todo" do
         expect {
-          post :create, {:todo => valid_attributes}, valid_session
+          post :create, {:todo => valid_attributes, format: "json"}, valid_session
         }.to change(Todo, :count).by(1)
       end
 
       it "assigns a newly created todo as @todo" do
-        post :create, {:todo => valid_attributes}, valid_session
+        post :create, {:todo => valid_attributes, format: "json"}, valid_session
         assigns(:todo).should be_a(Todo)
         assigns(:todo).should be_persisted
       end
 
-      it "redirects to the created todo" do
-        post :create, {:todo => valid_attributes}, valid_session
-        response.should redirect_to(Todo.last)
+      it "returns :created" do
+        post :create, {:todo => valid_attributes, format: "json"}, valid_session
+        response.code.should == "201"
       end
     end
 
@@ -62,15 +62,15 @@ describe TodosController do
       it "assigns a newly created but unsaved todo as @todo" do
         # Trigger the behavior that occurs when invalid params are submitted
         Todo.any_instance.stub(:save).and_return(false)
-        post :create, {:todo => { "description" => "invalid value" }}, valid_session
+        post :create, {:todo => { "description" => "invalid value" }, format: "json"}, valid_session
         assigns(:todo).should be_a_new(Todo)
       end
 
-      it "re-renders the 'new' template" do
+      it "returns :unprocessable_entity" do
         # Trigger the behavior that occurs when invalid params are submitted
         Todo.any_instance.stub(:save).and_return(false)
-        post :create, {:todo => { "description" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        post :create, {:todo => { "description" => "invalid value" }, format: "json"}, valid_session
+        response.code.should == "422"
       end
     end
   end
@@ -84,19 +84,19 @@ describe TodosController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Todo.any_instance.should_receive(:update).with({ "description" => "MyString" })
-        put :update, {:id => todo.to_param, :todo => { "description" => "MyString" }}, valid_session
+        put :update, {:id => todo.to_param, :todo => { "description" => "MyString" }, format: "json"}, valid_session
       end
 
       it "assigns the requested todo as @todo" do
         todo = Todo.create! valid_attributes
-        put :update, {:id => todo.to_param, :todo => valid_attributes}, valid_session
+        put :update, {:id => todo.to_param, :todo => valid_attributes, format: "json"}, valid_session
         assigns(:todo).should eq(todo)
       end
 
-      it "redirects to the todo" do
+      it "returns :no_content" do
         todo = Todo.create! valid_attributes
-        put :update, {:id => todo.to_param, :todo => valid_attributes}, valid_session
-        response.should redirect_to(todo)
+        put :update, {:id => todo.to_param, :todo => valid_attributes, format: "json"}, valid_session
+        response.code.should == "204"
       end
     end
 
@@ -105,16 +105,16 @@ describe TodosController do
         todo = Todo.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Todo.any_instance.stub(:save).and_return(false)
-        put :update, {:id => todo.to_param, :todo => { "description" => "invalid value" }}, valid_session
+        put :update, {:id => todo.to_param, :todo => { "description" => "invalid value" }, format: "json"}, valid_session
         assigns(:todo).should eq(todo)
       end
 
-      it "re-renders the 'edit' template" do
+      it "returns :unprocessable_entity" do
         todo = Todo.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Todo.any_instance.stub(:save).and_return(false)
-        put :update, {:id => todo.to_param, :todo => { "description" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        put :update, {:id => todo.to_param, :todo => { "description" => "invalid value" }, format: "json"}, valid_session
+        response.code.should == "422"
       end
     end
   end
@@ -123,14 +123,14 @@ describe TodosController do
     it "destroys the requested todo" do
       todo = Todo.create! valid_attributes
       expect {
-        delete :destroy, {:id => todo.to_param}, valid_session
+        delete :destroy, {:id => todo.to_param, format: "json"}, valid_session
       }.to change(Todo, :count).by(-1)
     end
 
-    it "redirects to the todos list" do
+    it "returns :no_content" do
       todo = Todo.create! valid_attributes
-      delete :destroy, {:id => todo.to_param}, valid_session
-      response.should redirect_to(todos_url)
+      delete :destroy, {:id => todo.to_param, format: "json"}, valid_session
+      response.code.should == "204"
     end
   end
 
