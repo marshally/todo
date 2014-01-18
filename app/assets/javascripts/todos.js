@@ -30,7 +30,18 @@ function create_todo(form_id) {
   $.create(
     '/todos',
     $("#"+form_id).serialize(),
-    function (reponse) {
+    function (response) {
+      created = $("#new_todo_0").clone();
+      id = "edit_todo_"+response.id;
+      created.attr("id", id);
+      $("#new_todo>div>input").each(function(e) {
+        if (this.name.substring(0, 4) === "todo") {
+          created.find("input[name='"+this.name+"']")[0].value = this.value;
+          this.value = "";
+        }
+      });
+      created.insertBefore("#new_todo");
+
       alert('successfully added todo.');
     }
   );

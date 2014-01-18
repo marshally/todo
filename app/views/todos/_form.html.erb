@@ -3,6 +3,6 @@
         <div><%= f.input_field :priority, placeholder: "priority"  %></div>
         <div><%= f.input_field :due_at, as: :string, class: "datepicker" %></div>
         <div><%= f.input_field :completed, as: :boolean %></div>
-        <div><%= f.submit todo.new_record? ? "Create" : "Save" %></div>
+        <div><%= f.submit todo.id.nil? ? "Create" : "Save" %></div>
         <div><%= f.submit "Delete" unless todo.id.nil? %></div>
 <% end %>
