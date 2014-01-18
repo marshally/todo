@@ -5,27 +5,26 @@ $(document).ready(function() {
       dateFormat: "yy-mm-dd"
     });
   });
-  $("input[type='submit']").each(function() {
-    $(this).click(function(e) {
-      button = e.currentTarget;
-      form = button.form;
-
-      if (button.value == "Create") {
-        create_todo(form.id);
-      }
-      else if (button.value == "Save") {
-        update_todo(form.id);
-      }
-      else if (button.value == "Delete") {
-        delete_todo(form.id);
-      }
-      else {
-
-      }
-    });
-  });
+  $("input[type='submit']").on("click", handle_click);
 });
 
+function handle_click(e) {
+  button = e.currentTarget;
+  form = button.form;
+
+  if (button.value == "Create") {
+    create_todo(form.id);
+  }
+  else if (button.value == "Save") {
+    update_todo(form.id);
+  }
+  else if (button.value == "Delete") {
+    delete_todo(form.id);
+  }
+  else {
+
+  }
+}
 function create_todo(form_id) {
   $.create(
     '/todos',
@@ -41,7 +40,7 @@ function create_todo(form_id) {
         }
       });
       created.insertBefore("#new_todo");
-
+      $("input[type='submit']").on("click", handle_click);
       alert('successfully added todo.');
     }
   );
