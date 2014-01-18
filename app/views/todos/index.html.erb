@@ -1,21 +1,21 @@
 <h1>Listing todos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Priority</th>
-      <th>Due Date</th>
-      <th>Completed</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="table">
+  <div>
+    <div style="margin:0;padding:0;display:inline"></div>    <div>Description</div>
+    <div>Priority</div>
+    <div>Due Date</div>
+    <div>Completed</div>
+    <div></div>
+    <div></div>
+  </div>
 
-  <tbody>
-    <% @todos.each do |todo| %>
-      <%= render partial: "form", locals: {todo: todo} %>
-    <% end %>
-    <%= render partial: "form", locals: {todo: Todo.new} %>
-  </tbody>
-</table>
+  <% @todos.each do |todo| %>
+    <%= render partial: "form", locals: {todo: todo} %>
+  <% end %>
+  <%= render partial: "form", locals: {todo: Todo.new} %>
+</div>
+
+<div id="template" style="display:none">
+    <%= render partial: "form", locals: {todo: Todo.new(:id => 0)} %>
+</div>

@@ -1,10 +1,8 @@
 <%= simple_form_for(todo, :url => "#", html: { onsubmit: "return false;".html_safe}) do |f| %>
-      <tr id="todo-<%= todo.new_record? ? "new" : todo.id %>">
-        <td><%= f.input_field :description, maxlength: 20, placeholder: "enter a new task" %></td>
-        <td><%= f.input_field :priority, placeholder: "priority"  %></td>
-        <td><%= f.input_field :due_at, as: :string, class: "datepicker" %></td>
-        <td><%= f.input_field :completed, as: :boolean %></td>
-        <td><%= f.submit todo.new_record? ? "Create" : "Save" %></td>
-        <td><%= f.submit "Delete" unless todo.new_record? %></td>
-      </tr>
+        <div><%= f.input_field :description, maxlength: 20, placeholder: "enter a new task" %></div>
+        <div><%= f.input_field :priority, placeholder: "priority"  %></div>
+        <div><%= f.input_field :due_at, as: :string, class: "datepicker" %></div>
+        <div><%= f.input_field :completed, as: :boolean %></div>
+        <div><%= f.submit todo.new_record? ? "Create" : "Save" %></div>
+        <div><%= f.submit "Delete" unless todo.id.nil? %></div>
 <% end %>
