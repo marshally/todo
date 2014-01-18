@@ -25,11 +25,16 @@ function handle_click(e) {
     alert("You clicked an unknown button - " + button.value);
   }
 }
+
 function create_todo(form_id) {
-  $.create(
-    '/todos',
-    $("#"+form_id).serialize(),
-    function (response) {
+  $.create({
+    url: '/todos',
+    data: $("#"+form_id).serialize(),
+    error: function(response) {
+      $("#new_todo>div.error").html(response.responseText);
+      $("#new_todo").effect("highlight", {color: 'red'}, 3000);
+    },
+    success: function (response) {
       created = $("#new_todo_0").clone();
       id = "edit_todo_"+response.id;
       created.attr("id", id);
@@ -42,8 +47,9 @@ function create_todo(form_id) {
       created.insertBefore("#new_todo");
       created.effect("highlight", 1000);
       $("input[type='submit']").on("click", handle_click);
+      $("#new_todo>div.error").html("");
     }
-  );
+  });
 }
 
 function update_todo(form_id) {
