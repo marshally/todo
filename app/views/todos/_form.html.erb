@@ -5,4 +5,5 @@
         <div><%= f.input_field :completed, as: :boolean %></div>
         <div><%= f.submit todo.id.nil? ? "Create" : "Save" %></div>
         <div><%= f.submit "Delete" unless todo.id.nil? %></div>
+        <div class="error"></div>
 <% end %>

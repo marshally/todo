@@ -49,13 +49,17 @@ function create_todo(form_id) {
 function update_todo(form_id) {
   todo_id = form_id.match(/\d+$/);
 
-  $.update(
-    '/todos/'+todo_id,
-    $("#"+form_id).serialize(),
-    function (reponse) {
-      alert('successfully updated todo.');
+  $.update({
+    url: '/todos/'+todo_id,
+    data: $("#"+form_id).serialize(),
+    success: function (response) {
+      $("#"+form_id+">div.error").html("");
+    },
+    error: function (response) {
+      $("#"+form_id+">div.error").html(response.responseText);
+      console.log(response);
     }
-  );
+  });
 }
 
 function delete_todo(form_id) {
