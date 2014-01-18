@@ -1,4 +1,4 @@
-<%= simple_form_for(todo) do |f| %>
+<%= simple_form_for(todo, :url => "#", html: { onsubmit: "return false;".html_safe}) do |f| %>
       <tr id="todo-<%= todo.new_record? ? "new" : todo.id %>">
         <td><%= f.input_field :description, maxlength: 20, placeholder: "enter a new task" %></td>
         <td><%= f.input_field :priority, placeholder: "priority"  %></td>
