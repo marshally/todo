@@ -40,8 +40,8 @@ function create_todo(form_id) {
         }
       });
       created.insertBefore("#new_todo");
+      created.effect("highlight", 1000);
       $("input[type='submit']").on("click", handle_click);
-      alert('successfully added todo.');
     }
   );
 }
@@ -54,10 +54,11 @@ function update_todo(form_id) {
     data: $("#"+form_id).serialize(),
     success: function (response) {
       $("#"+form_id+">div.error").html("");
+      $("#"+form_id).effect("highlight", 1000);
     },
     error: function (response) {
       $("#"+form_id+">div.error").html(response.responseText);
-      console.log(response);
+      $("#"+form_id).effect("highlight", {color: 'red'}, 3000);
     }
   });
 }
