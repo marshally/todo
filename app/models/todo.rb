@@ -2,13 +2,13 @@
 #
 # Table name: todos
 #
-#  id           :integer          not null, primary key
-#  description  :string(255)
-#  priority     :integer
-#  due_at       :datetime
-#  completed_at :datetime
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id          :integer          not null, primary key
+#  description :string(255)      not null
+#  priority    :integer
+#  due_at      :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#  completed   :boolean          default(FALSE), not null
 #
 
 class Todo < ActiveRecord::Base
