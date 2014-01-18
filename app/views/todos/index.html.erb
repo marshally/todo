@@ -5,9 +5,8 @@
     <tr>
       <th>Description</th>
       <th>Priority</th>
-      <th>Due at</th>
-      <th>Completed at</th>
-      <th></th>
+      <th>Due Date</th>
+      <th>Completed</th>
       <th></th>
       <th></th>
     </tr>
@@ -15,19 +14,8 @@
 
   <tbody>
     <% @todos.each do |todo| %>
-      <tr>
-        <td><%= todo.description %></td>
-        <td><%= todo.priority %></td>
-        <td><%= todo.due_at %></td>
-        <td><%= todo.completed_at %></td>
-        <td><%= link_to 'Show', todo %></td>
-        <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= render partial: "form", locals: {todo: todo} %>
     <% end %>
+    <%= render partial: "form", locals: {todo: Todo.new} %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Todo', new_todo_path %>
