@@ -11,7 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.ui.all
+//= require jquery.ui.datepicker
+//= require jquery.ui.effect-highlight
 //= require jquery.rest
 //= require jquery_ujs
 //= require_tree .
