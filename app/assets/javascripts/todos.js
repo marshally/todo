@@ -22,7 +22,7 @@ function handle_click(e) {
     delete_todo(form.id);
   }
   else {
-
+    alert("You clicked an unknown button - " + button.value);
   }
 }
 function create_todo(form_id) {
