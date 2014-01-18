@@ -25,7 +25,9 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 gem 'jquery-ui-rails', '~> 3.0.1'
+gem 'jquery-rest-rails', '~> 1.0.0'
 gem 'simple_form', '~> 3.0.1'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
