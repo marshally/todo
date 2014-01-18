@@ -5,6 +5,6 @@
         <td><%= f.input_field :due_at, as: :string, class: "datepicker" %></td>
         <td><%= f.input_field :completed, as: :boolean %></td>
         <td><%= f.submit todo.new_record? ? "Create" : "Save" %></td>
-        <td><%= f.submit "Delete" %></td>
+        <td><%= f.submit "Delete" unless todo.new_record? %></td>
       </tr>
 <% end %>
