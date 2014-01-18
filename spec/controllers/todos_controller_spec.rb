@@ -38,29 +38,6 @@ describe TodosController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested todo as @todo" do
-      todo = Todo.create! valid_attributes
-      get :show, {:id => todo.to_param}, valid_session
-      assigns(:todo).should eq(todo)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new todo as @todo" do
-      get :new, {}, valid_session
-      assigns(:todo).should be_a_new(Todo)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested todo as @todo" do
-      todo = Todo.create! valid_attributes
-      get :edit, {:id => todo.to_param}, valid_session
-      assigns(:todo).should eq(todo)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Todo" do
