@@ -67,7 +67,7 @@ function delete_todo(form_id) {
   $.destroy({
     url: '/todos/'+todo_id,
     success: function (response) {
-      alert('successfully deleted task.');
+      $("#"+form_id).remove();
     }
   });
 }
