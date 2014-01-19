@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119171712) do
+ActiveRecord::Schema.define(version: 20140119201255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140119171712) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "completed",   default: false, null: false
+    t.integer  "user_id"
   end
 
   add_index "todos", ["due_at"], name: "index_todos_on_due_at", using: :btree
