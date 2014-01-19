@@ -52,3 +52,7 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 2.5.0'
 end
+
+group :production do
+  gem 'pg', '~> 0.17.1'
+end
