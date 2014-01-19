@@ -33,6 +33,7 @@ describe TodosController do
 
   let(:user_attributes) { { password: "12345678" } }
   let(:user) { User.create_with(user_attributes).find_or_create_by!(email: "marshall@yountlabs.com") }
+  let(:user_two) { User.create_with(user_attributes).find_or_create_by!(email: "marshall.yount@gmail.com") }
 
   before :each do
     sign_in user
@@ -43,6 +44,13 @@ describe TodosController do
       todo = Todo.create! valid_attributes
       get :index, {}, valid_session
       assigns(:todos).should eq([todo])
+    end
+
+    it "a user cannot see another's todos" do
+      todo = Todo.create! valid_attributes
+      sign_in user_two
+      get :index, {}, valid_session
+      assigns(:todos).should eq([])
     end
   end
 
