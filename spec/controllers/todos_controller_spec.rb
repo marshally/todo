@@ -30,6 +30,13 @@ describe TodosController do
   # TodosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  let(:user_attributes) { { password: "12345678" } }
+  let(:user) { User.create_with(user_attributes).find_or_create_by!(email: "marshall@yountlabs.com") }
+
+  before :each do
+    sign_in user
+  end
+
   describe "GET index" do
     it "assigns all todos as @todos" do
       todo = Todo.create! valid_attributes
