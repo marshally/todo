@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140117231459) do
+ActiveRecord::Schema.define(version: 20140119155758) do
 
   create_table "todos", force: true do |t|
     t.string   "description",                 null: false
@@ -24,5 +24,14 @@ ActiveRecord::Schema.define(version: 20140117231459) do
 
   add_index "todos", ["due_at"], name: "index_todos_on_due_at"
   add_index "todos", ["priority"], name: "index_todos_on_priority"
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end
