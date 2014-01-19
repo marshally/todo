@@ -10,7 +10,6 @@ class TodosController < ApplicationController
   # POST /todos.json
   def create
     @todo = Todo.new(todo_params)
-
     respond_to do |format|
       if @todo.save
         format.json { render action: 'show', status: :created, location: @todo }
@@ -47,6 +46,9 @@ class TodosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:description, :priority, :due_at, :completed)
+      params.
+        require(:todo).
+        permit(:description, :priority, :due_at, :completed).
+        merge(user_id: current_user.id)
     end
 end

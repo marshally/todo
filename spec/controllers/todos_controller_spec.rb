@@ -23,7 +23,8 @@ describe TodosController do
   # This should return the minimal set of attributes required to create a valid
   # Todo. As you add validations to Todo, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "description" => "MyString", "priority" => 1 } }
+  let(:valid_params) { { "description" => "MyString", "priority" => 1 } }
+  let(:valid_attributes) { valid_params.merge(user_id: user.id) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -49,18 +50,18 @@ describe TodosController do
     describe "with valid params" do
       it "creates a new Todo" do
         expect {
-          post :create, {:todo => valid_attributes, format: "json"}, valid_session
+          post :create, {:todo => valid_params, format: "json"}, valid_session
         }.to change(Todo, :count).by(1)
       end
 
       it "assigns a newly created todo as @todo" do
-        post :create, {:todo => valid_attributes, format: "json"}, valid_session
+        post :create, {:todo => valid_params, format: "json"}, valid_session
         assigns(:todo).should be_a(Todo)
         assigns(:todo).should be_persisted
       end
 
       it "returns :created" do
-        post :create, {:todo => valid_attributes, format: "json"}, valid_session
+        post :create, {:todo => valid_params, format: "json"}, valid_session
         response.code.should == "201"
       end
     end
@@ -90,19 +91,19 @@ describe TodosController do
         # specifies that the Todo created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Todo.any_instance.should_receive(:update).with({ "description" => "MyString" })
+        Todo.any_instance.should_receive(:update).with({ "description" => "MyString", "user_id" => user.id })
         put :update, {:id => todo.to_param, :todo => { "description" => "MyString" }, format: "json"}, valid_session
       end
 
       it "assigns the requested todo as @todo" do
         todo = Todo.create! valid_attributes
-        put :update, {:id => todo.to_param, :todo => valid_attributes, format: "json"}, valid_session
+        put :update, {:id => todo.to_param, :todo => valid_params, format: "json"}, valid_session
         assigns(:todo).should eq(todo)
       end
 
       it "returns :no_content" do
         todo = Todo.create! valid_attributes
-        put :update, {:id => todo.to_param, :todo => valid_attributes, format: "json"}, valid_session
+        put :update, {:id => todo.to_param, :todo => valid_params, format: "json"}, valid_session
         response.code.should == "204"
       end
     end

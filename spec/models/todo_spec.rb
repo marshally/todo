@@ -18,8 +18,10 @@ describe Todo do
 
   it { should validate_presence_of(:description) }
   it { should validate_numericality_of(:priority) }
+  it { should validate_presence_of(:user_id) }
+  it { should validate_numericality_of(:user_id) }
 
-  let(:valid_attributes) { {description: "abc", priority: 1} }
+  let(:valid_attributes) { {description: "abc", priority: 1, user_id: 1} }
 
   context "#ensure_completed" do
     it "should allow a user to be saved with no completed set" do
