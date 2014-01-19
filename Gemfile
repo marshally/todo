@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 gem 'devise', '~> 3.2.2'
+gem 'dotenv-rails', '~> 0.9.0'
 gem 'heroku', '~> 3.2.2'
 gem 'jquery-ui-rails', '~> 3.0.1'
 gem 'jquery-rest-rails', '~> 1.0.0'

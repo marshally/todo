@@ -30,6 +30,7 @@ end
 
 
 guard 'pow' do
+  watch('.env')
   watch('.powrc')
   watch('.powenv')
   watch('.ruby-gemset')
