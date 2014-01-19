@@ -1,5 +1,4 @@
 class TodosController < ApplicationController
-  before_filter :authenticate_user!
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
 
   # GET /todos
