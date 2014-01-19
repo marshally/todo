@@ -6,6 +6,6 @@ class ChangeCompletedAtToBoolean < ActiveRecord::Migration
   end
 
   def down
-    raise NotImplementedError
+    raise ActiveRecord::IrreversibleMigration
   end
 end
