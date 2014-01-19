@@ -14,4 +14,12 @@
 class Todo < ActiveRecord::Base
   validates :description, presence: true
   validates :priority, numericality: true
+
+  before_save :ensure_completed
+
+  def ensure_completed
+    if completed.blank?
+      self.completed = false
+    end
+  end
 end
