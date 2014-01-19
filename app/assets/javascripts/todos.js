@@ -5,7 +5,7 @@ $(document).ready(function() {
       dateFormat: "yy-mm-dd"
     });
   });
-  $("input[type='submit']").on("click", handle_click);
+  todo_buttons().on("click", handle_click);
   $("#priority_header").click(function() {
     toggle_sort_order("priority");
     sort("priority");
@@ -21,6 +21,10 @@ $(document).ready(function() {
     }
   });
 });
+
+function todo_buttons() {
+  return $("div.table>>>input[type='submit']");
+}
 
 function handle_click(e) {
   button = e.currentTarget;
@@ -57,7 +61,7 @@ function create_todo(form_id) {
       });
       created.insertBefore("#new_todo");
       created.effect("highlight", 1000);
-      $("input[type='submit']").on("click", handle_click);
+      todo_buttons().on("click", handle_click);
       $("#new_todo>div.error").html("");
       sort(window.order_by);
     }
