@@ -14,5 +14,6 @@
 //= require jquery.ui.datepicker
 //= require jquery.ui.effect-highlight
 //= require jquery.rest
+//= require jquery.tinysort
 //= require jquery_ujs
 //= require_tree .

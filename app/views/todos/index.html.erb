@@ -2,18 +2,19 @@
 
 <div class="table">
   <div>
-    <div style="margin:0;padding:0;display:inline"></div>    <div>Description</div>
-    <div>Priority</div>
-    <div>Due Date</div>
-    <div>Completed</div>
+    <div style="margin:0;padding:0;display:inline"></div>
+    <div class="th" id="description_header">Description</div>
+    <div class="th" id="priority_header">Priority</div>
+    <div class="th" id="due_date_header">Due Date</div>
+    <div class="th" id="completed_header">Completed</div>
     <div></div>
     <div></div>
   </div>
 
+  <%= render partial: "form", locals: {todo: Todo.new} %>
   <% @todos.each do |todo| %>
     <%= render partial: "form", locals: {todo: todo} %>
   <% end %>
-  <%= render partial: "form", locals: {todo: Todo.new} %>
 </div>
 
 <div id="template" style="display:none">
