@@ -25,6 +25,7 @@ gem 'devise', '~> 3.2.2'
 gem 'heroku', '~> 3.2.2'
 gem 'jquery-ui-rails', '~> 3.0.1'
 gem 'jquery-rest-rails', '~> 1.0.0'
+gem 'pg', '~> 0.17.1'
 gem 'simple_form', '~> 3.0.1'
 
 group :doc do
@@ -34,7 +35,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
-  gem 'sqlite3'
   gem 'quiet_assets'
 end
 
@@ -49,8 +49,4 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 2.5.0'
-end
-
-group :production do
-  gem 'pg', '~> 0.17.1'
 end

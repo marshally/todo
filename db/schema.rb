@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140119171712) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "todos", force: true do |t|
     t.string   "description",                 null: false
     t.integer  "priority"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 20140119171712) do
     t.boolean  "completed",   default: false, null: false
   end
 
-  add_index "todos", ["due_at"], name: "index_todos_on_due_at"
-  add_index "todos", ["priority"], name: "index_todos_on_priority"
+  add_index "todos", ["due_at"], name: "index_todos_on_due_at", using: :btree
+  add_index "todos", ["priority"], name: "index_todos_on_priority", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 20140119171712) do
     t.string   "authentication_token"
   end
 
-  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token"
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
