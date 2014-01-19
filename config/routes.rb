@@ -1,4 +1,5 @@
 TodoList::Application.routes.draw do
+  devise_for :users
   resources :todos, only: [:index, :create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
