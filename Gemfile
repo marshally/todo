@@ -24,6 +24,7 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'devise', '~> 3.2.2'
 gem 'jquery-ui-rails', '~> 3.0.1'
 gem 'jquery-rest-rails', '~> 1.0.0'
 gem 'simple_form', '~> 3.0.1'
