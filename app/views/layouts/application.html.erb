@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<% if signed_in? -%>
+  <div id="user_login_box" style="float:right">
+    <%= current_user.email %> |
+    <%= link_to 'My Account', edit_user_registration_path %> |
+    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+  </div>
+<% end -%>
 <%= yield %>
 
 </body>
